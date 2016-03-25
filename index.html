@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pizzadash by PizzadashRPIOpenSource</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pizzadash</h1>
+        <p>This is a node.js application that &quot;hacks&quot; your Amazon Dash Button to order you a Domino&#39;s pizza! Contributing for Rensselaer Polytechnic Institute Intro to Open Source Class</p>
+
+        <p class="view"><a href="https://github.com/PizzadashRPIOpenSource/pizzadash">View the Project on GitHub <small>PizzadashRPIOpenSource/pizzadash</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/PizzadashRPIOpenSource/pizzadash/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/PizzadashRPIOpenSource/pizzadash/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/PizzadashRPIOpenSource/pizzadash">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://i.imgur.com/DD944Cz.jpg" alt="Pizza Dash"></p>
+
+<h1>
+<a id="pizzadash" class="anchor" href="#pizzadash" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PizzaDash</h1>
+
+<p><a href="https://gitter.im/bhberson/pizzadash?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/bhberson/pizzadash"></a></p>
+
+<p>This is a node.js application that "hacks" your <a href="http://www.amazon.com/dashbutton">Amazon Dash Button</a> to order you a <a href="https://www.dominos.com/">Domino</a>'s pizza!
+I was inspired by <a href="https://medium.com/@edwardbenson/how-i-hacked-amazon-s-5-wifi-button-to-track-baby-data-794214b0bdd8">this article by Edward Bensen</a>.
+I am using a few npm modules to listen for the button press and place the order: <a href="https://github.com/RIAEvangelist">RIAEvangelist</a>'s <a href="https://github.com/RIAEvangelist/node-dominos-pizza-api">dominos</a> and also <a href="https://github.com/hortinstein">hortinstein</a>'s <a href="https://github.com/hortinstein/node-dash-button">Node-Dash-Button</a>.</p>
+
+<p>One idea would be to have this <a href="#always-running">always running</a> via a local server such as a Raspberry Pi and have on demand pizza ordering whenever you just need a pizza!</p>
+
+<p>I wrote a blog post about my experience here on <a href="https://medium.com/@brody_berson/hacking-amazon-s-5-dash-button-to-order-domino-s-pizza-9d19c9d04646">Medium</a>!</p>
+
+<h1>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h1>
+
+<p><strong>pcap</strong>
+If you are running ubuntu you will need to run <code>sudo apt-get install libpcap0.8-dev</code></p>
+
+<h1>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h1>
+
+<ol>
+<li>Pull or Fork code.</li>
+<li>Do cool stuff.</li>
+<li>Submit a PR.</li>
+</ol>
+
+<h1>
+<a id="setuprun" class="anchor" href="#setuprun" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup/Run</h1>
+
+<ol>
+<li>Run <code>npm install</code> the first time so all npm requirements will be installed.</li>
+<li>Find Closest Store
+
+<ul>
+<li>Run <code>node findStore.js</code> and input your 5 digit zipcode, this will return closest store info (Store ID) and their menu.</li>
+</ul>
+</li>
+<li>Find Dash Button
+
+<ul>
+<li>Run <code>sudo node node_modules/node-dash-button/bin/findbutton</code> and press the button</li>
+</ul>
+</li>
+<li>Edit the <code>app.js</code> file.
+
+<ul>
+<li>Add your store from step 2</li>
+<li>Edit your address and personal/customer information</li>
+<li>Edit your order using menu from step 2</li>
+<li>Add credit card information</li>
+</ul>
+</li>
+<li>Create your <code>.env</code> environmental variable file
+
+<ul>
+<li>Add your Amazon Dash Button's address from step 3</li>
+<li>You can add as much personal information from Step 4 into this file as you want if it makes you more comfortable, just would require some logic changes in the <code>app.js</code> file.</li>
+</ul>
+</li>
+<li>Run<code>npm start</code> and press your Dash Button that you have set up and BAM pizza will be coming soon!</li>
+</ol>
+
+<h2>
+<a id="always-running" class="anchor" href="#always-running" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Always Running</h2>
+
+<p>This <a href="http://weworkweplay.com/play/raspberry-pi-nodejs/">article</a> shows you what you can do with a <a href="https://www.raspberrypi.org/">Raspberry Pi</a> to set this up as a node server running all the time on your network and it literally would be the press of a button <em>whenever</em> you wanted!</p>
+
+<h2>
+<a id="to-do" class="anchor" href="#to-do" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>To do</h2>
+
+<ul>
+<li>Smooth things out and make a setup script for first time users that will create an <code>.env</code> file automatically for them</li>
+<li>Other ideas?</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/PizzadashRPIOpenSource">PizzadashRPIOpenSource</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
