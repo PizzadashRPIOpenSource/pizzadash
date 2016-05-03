@@ -1,6 +1,7 @@
 var express= require("express");
 var router = express.Router();
-var path = __dirname + '/html/'
+var path = __dirname + '/html/';
+var jsPath = __dirname;
 var session = 'hello';
 
 router.use(function (req,res,next){
@@ -10,6 +11,10 @@ router.use(function (req,res,next){
 
 router.get("/",function(req,res){
 	res.sendFile(path+'index.html');
+});
+
+router.get('*.js',function(req,res){
+	res.sendFile(jsPath+req.path);
 });
 
 router.get("/customer",function(req,res){
@@ -46,9 +51,18 @@ router.post("/billing",function(req,res){
 	res.redirect("/");
 });
 
+router.get('/order',function(req,res){
+	res.sendFile(path+'order.html');
+});
+
+router.get('/order/categories',function(req,res){
+	res.json({categories:["1","2","3","4","5"]});
+});
+
 router.get("*",function(req,res){
   res.sendFile(path + "index.html");
 })
+
 
 
 
