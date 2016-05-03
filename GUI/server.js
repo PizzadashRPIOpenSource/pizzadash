@@ -1,6 +1,6 @@
 var express= require("express");
 var router = express.Router();
-var path = __dirname+ '/html/';
+var path = __dirname + '/html/';
 var jsPath = __dirname+'/js';
 var session = 'hello';
 
@@ -22,18 +22,18 @@ router.get("/customer",function(req,res){
 });
 
 router.post("/customer",function(req,res){
-	session={};
-	session.order={};
-	session.order.customer={};
-	session.order.customer.firstName=req.body.firstname;
-	session.order.customer.lastName=req.body.lastname;
-	session.order.customer.address={};
-	session.order.customer.address.Street=req.body.streetaddress;
-	session.order.customer.address.City=req.body.city;
-	session.order.customer.address.Region=req.body.state;
-	session.order.customer.address.PostalCode=req.body.zip;
-	session.order.customer.email=req.body.email;
-	session.order.customer.phone=req.body.phone;
+	session={}
+	session.order={}
+	session.order.customer={}
+	session.order.customer.firstName=req.body.firstname
+	session.order.customer.lastName=req.body.lastname
+	session.order.customer.address={}
+	session.order.customer.address.Street=req.body.streetaddress
+	session.order.customer.address.City=req.body.city
+	session.order.customer.address.Region=req.body.state
+	session.order.customer.address.PostalCode=req.body.zip
+	session.order.customer.email=req.body.email
+	session.order.customer.phone=req.body.phone
 	res.redirect('/billing');
 });
 
