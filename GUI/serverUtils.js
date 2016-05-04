@@ -8,6 +8,7 @@ module.exports.getStores=function getStores(zip, callback){
 		zip, 
 		'Delivery',
 		function(storeData) {
+			console.log(storeData.result.Stores);
 			callback(storeData);
 		}
 	);

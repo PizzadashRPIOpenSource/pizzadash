@@ -28,8 +28,8 @@ router.get("/store",function(req,res){
 });
 
 router.get("/store/find",function(req,res){
-	//var zip = session.order.customer.address.PostalCode;
-	zip='12180';
+	var zip = session.order.customer.address.PostalCode;
+	//zip='12180';
 	utils.getStores(zip,function(storeData){
 		res.json(storeData.result.Stores);
 	})
@@ -70,7 +70,7 @@ router.post("/billing",function(req,res){
 	session.cardPost=req.body.cardPost;
 	console.log(session);
 	console.log(session.order.customer.address);
-	res.redirect("/");
+	res.redirect("/store");
 });
 
 router.get('/order',function(req,res){

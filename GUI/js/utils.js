@@ -20,13 +20,16 @@ function getCategories(callback){
 }
 
 function populateStores(){
-	var select = document.getElementById("selectStore"); 
+	var select = document.getElementById("selectStore");
+	var nl="<br>";
 	getStores(function(options){
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
+		    var address = opt.AddressDescription.split('\n');
 		    var el = '<input type="radio" name="store"';
 		    el+=' value="'+opt.StoreID+'"/>';
-		    el="<p>"+el+" "+opt.StoreID+"</p><br></br>"
+		    el="<p>"+el+" StoreID: "+opt.StoreID+nl+address[0]+nl+address[1]+nl;
+		    el+="Delivery Hours: "+opt.ServiceHoursDescription.Delivery;
 		    var radioFragment = document.createElement('div');
    			radioFragment.innerHTML = el;
 		    select.appendChild(radioFragment.firstChild);
