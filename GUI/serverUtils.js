@@ -8,7 +8,7 @@ module.exports.getStores=function getStores(zip, callback){
 		zip, 
 		'Delivery',
 		function(storeData) {
-			return callback(storeData);
+			callback(storeData);
 		}
 	);
 }
@@ -16,7 +16,7 @@ module.exports.getStores=function getStores(zip, callback){
 module.exports.getMenu=function getMenu(store, callback){
 	store.getMenu(
 		function(storeData){
-			return callback(storeData);
+			callback(storeData);
 		}
 	);
 }

@@ -24,9 +24,9 @@ function populateStores(){
 	getStores(function(options){
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
-		    var el = '<input type="radio" name="' + 'store' + '"';
-		    el+=' value="'+opt.name+'"/>';
-		    el="<p>"+el+" "+opt.name+"</p><br></br>"
+		    var el = '<input type="radio" name="store"';
+		    el+=' value="'+opt.StoreID+'"/>';
+		    el="<p>"+el+" "+opt.StoreID+"</p><br></br>"
 		    var radioFragment = document.createElement('div');
    			radioFragment.innerHTML = el;
 		    select.appendChild(radioFragment.firstChild);
@@ -38,7 +38,7 @@ function getStores(callback){
 	var url=window.location.href+"/find";
 	console.log(httpGetAsync(url,function(data){
 		var json=JSON.parse(data);
-		callback(json.stores);
+		callback(json);
 	}));
 }
 

@@ -1,4 +1,5 @@
 var express= require("express");
+var utils= require("./serverUtils.js");
 var router = express.Router();
 var path = __dirname+ '/html/';
 var jsPath = __dirname+'/js';
@@ -27,7 +28,11 @@ router.get("/store",function(req,res){
 });
 
 router.get("/store/find",function(req,res){
-	res.json({stores:[{name:"hello"},{name:"goodbye"}]});
+	//var zip = session.order.customer.address.PostalCode;
+	zip='12180';
+	utils.getStores(zip,function(storeData){
+		res.json(storeData.result.Stores);
+	})
 });
 
 router.post("/store",function(req,res){
