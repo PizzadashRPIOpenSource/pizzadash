@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="personalinfoStylesheet.css"/>
-		<title>Pizza Order Form</title>
+	<link type="text/css" rel="stylesheet" href="personalinfoStylesheet.css"/>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pizza Order Form</title>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 	</head>
+	<div class="container">
 	<form action="./customer" method="POST"> <!--Put in whatever the form handler is-->
 		<fieldset>
 			<legend>Personal Information: </legend>
 			First Name:<br>
-			<input type="text" name="firstname" value=""><br>
+		  <input type="text" name="firstname" value=""><br>
 			Last Name:<br>
 			<input type="text" name="lastname" value=""><br>
 			Street Address:<br>
@@ -75,7 +85,8 @@
 			<input type="text" name="email" value=""><br>
 			Phone Number (only enter numbers, Ex: 1-555-555-5555 = 15555555555 ):<br>
 			<input type="text" name="phone" value=""><br><br>
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" style=" margin-left: 50%">
 		</fieldset>
 	</form>
+    </div>
 </html>
