@@ -1,4 +1,4 @@
-function populateList(){
+function populateCategories(){
 	var select = document.getElementById("selectCategory"); 
 	getCategories(function(options){
 		for(var i = 0; i < options.length; i++) {
@@ -9,8 +9,6 @@ function populateList(){
 		    select.appendChild(el);
 		}
 	}); 
-
-
 }
 
 function getCategories(callback){
@@ -18,6 +16,29 @@ function getCategories(callback){
 	console.log(httpGetAsync(url,function(data){
 		var json=JSON.parse(data);
 		callback(json.categories);
+	}));
+}
+
+function populateStores(){
+	var select = document.getElementById("selectStore"); 
+	getStores(function(options){
+		for(var i = 0; i < options.length; i++) {
+		    var opt = options[i];
+		    var el = '<input type="radio" name="' + 'store' + '"';
+		    el+=' value="'+opt.name+'"/>';
+		    el="<p>"+el+" "+opt.name+"</p><br></br>"
+		    var radioFragment = document.createElement('div');
+   			radioFragment.innerHTML = el;
+		    select.appendChild(radioFragment.firstChild);
+		}
+	});
+}
+
+function getStores(callback){
+	var url=window.location.href+"/find";
+	console.log(httpGetAsync(url,function(data){
+		var json=JSON.parse(data);
+		callback(json.stores);
 	}));
 }
 

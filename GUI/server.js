@@ -2,6 +2,7 @@ var express= require("express");
 var router = express.Router();
 var path = __dirname+ '/html/';
 var jsPath = __dirname+'/js';
+var cssPath = __dirname+'/css';
 var session = 'hello';
 
 router.use(function (req,res,next){
@@ -15,6 +16,22 @@ router.get("/",function(req,res){
 
 router.get('*.js',function(req,res){
 	res.sendFile(jsPath+req.path);
+});
+
+router.get('*.css',function(req,res){
+	res.sendFile(cssPath+req.path);
+});
+
+router.get("/store",function(req,res){
+	res.sendFile(path+'storePicker.html');
+});
+
+router.get("/store/find",function(req,res){
+	res.json({stores:[{name:"hello"},{name:"goodbye"}]});
+});
+
+router.post("/store",function(req,res){
+	res.sendFile(path+'storePicker.html');
 });
 
 router.get("/customer",function(req,res){
@@ -62,7 +79,6 @@ router.get('/order/categories',function(req,res){
 router.get("*",function(req,res){
   res.sendFile(path + "index.html");
 })
-
 
 
 
