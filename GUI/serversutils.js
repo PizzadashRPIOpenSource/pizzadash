@@ -3,7 +3,7 @@ var prompt = require('prompt');
 
 var mystores;
 
-function getStores(zip, callback){
+module.exports.getStores=function getStores(zip, callback){
 	pizzapi.Util.findNearbyStores(
 		zip, 
 		'Delivery',
@@ -13,7 +13,7 @@ function getStores(zip, callback){
 	);
 }
 
-function getMenu(store, callback){
+module.exports.getMenu=function getMenu(store, callback){
 	store.getMenu(
 		function(storeData){
 			return callback(storeData);
