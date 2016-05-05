@@ -55,6 +55,26 @@ function getStores(callback){
 	});
 }
 
+function parseCat(){
+	var select=document.getElementById('selectCategory');
+	var cat=select.value.split(":");
+	var url=window.location.href+"/getCat?rootCat="+cat[0];
+	if (cat[1]!=undefined) {
+		url+="&subCat="+cat[1];
+	}
+	httpGetAsync(url,function(data){
+		console.log(data);
+	})
+}
+
+function getItemsInRootCategory(rootCat, callback){
+	callback()
+}
+
+function getItemsInCategory(rootCat, cat, callback){
+	callback()
+}
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();

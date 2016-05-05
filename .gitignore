@@ -4,7 +4,7 @@ node_modules
 
 **/.DS_Store
 
->>>>>>> master
+
 # ignore the order files,
 *.json
 # except exampleorder.json

@@ -3,9 +3,9 @@ var utils= require("./serverUtils.js");
 var pizzapi=require("dominos");
 var router = express.Router();
 var path = __dirname+ '/html/';
-var jsPath = __dirname+'/js';
-var cssPath = __dirname+'/css';
-var imgPath = __dirname+'/images';
+var jsPath = __dirname+'/js/';
+var cssPath = __dirname+'/css/';
+var imgPath = __dirname+'/images/';
 var session = {};
 
 router.use(function (req,res,next){
@@ -21,17 +21,25 @@ router.post("/index", function(req,res){
 });
 
 router.get('*.js',function(req,res){
-	res.sendFile(jsPath+req.path);
+	var file=req.path.split("/");
+	file=file[file.length-1];
+	res.sendFile(jsPath+file);
 });
 
 router.get('*.css',function(req,res){
-	res.sendFile(cssPath+req.path);
+	var file=req.path.split("/");
+	file=file[file.length-1];
+	res.sendFile(cssPath+file);
 });
 router.get('*.jpg',function(req,res){
-	res.sendFile(imgPath+req.path);
+	var file=req.path.split("/");
+	file=file[file.length-1];
+	res.sendFile(imgPath+file);
 });
 router.get('*.png',function(req,res){
-	res.sendFile(imgPath+req.path);
+	var file=req.path.split("/");
+	file=file[file.length-1];
+	res.sendFile(imgPath+file);
 });
 
 router.get("/customer",function(req,res){
@@ -96,6 +104,11 @@ router.get('/order/categories',function(req,res){
 			res.json(cats);
 		});
 
+});
+
+router.get('/order/getCat',function(req,res){
+	console.log(req.query.rootCat);
+	console.log(req.query.subCat);
 });
 
 router.get("*",function(req,res){

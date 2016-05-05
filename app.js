@@ -19,8 +19,7 @@ app.listen(3000,function(){
 var orderconfig;
 try{
   orderconfig = require('./order.json');
-}
-catch{
+}catch(e){
   orderconfig = require('./exampleorder.json');
 }
 //Input order from json
