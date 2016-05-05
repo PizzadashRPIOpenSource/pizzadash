@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../bootstrap.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pizza Order Form</title>
@@ -49,10 +49,12 @@ body:after {
 	</head>
 	<body>
 	<div class="relative">
-		<img src="../images/Logo.png" >
+		<img src="../Logo.png" >
 		    <div class="absolute">
-    	<button onclick=window.location="./order.html" class="btn-circle"></button>
-		</div>
+				<form action="./index" method="POST">
+					<input type="submit" name="move" value="" class="btn-circle" />
+				</form>
+				</div>
 	</div>
 </body>
 </html>

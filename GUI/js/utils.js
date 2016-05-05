@@ -1,16 +1,16 @@
 function populateCategories(){
-	var select = document.getElementById("selectCategory"); 
+	var select = document.getElementById("selectCategory");
 	getCategories(function(rootCategories){
-		console.log(rootCategories);
+		// console.log(rootCategories);
 		for (var rootCat in rootCategories){
-			console.log(rootCat);
+			// console.log(rootCat);
 			var rootEl = document.createElement("option");
 			rootEl.textContent=rootCat;
 			rootEl.value = rootCat;
 			select.appendChild(rootEl);
 			var subCats=rootCategories[rootCat];
 			for(var i = 0; i < subCats.length; i++) {
-				console.log(subCats[i]);
+				// console.log(subCats[i]);
 			    var opt = subCats[i];
 			    var el = document.createElement("option");
 			    el.textContent = "-----"+opt;
@@ -18,15 +18,15 @@ function populateCategories(){
 			    select.appendChild(el);
 			}
 		}
-	}); 
+	});
 }
 
 function getCategories(callback){
 	var url=window.location.href+"/categories";
-	console.log(httpGetAsync(url,function(data){
+	httpGetAsync(url,function(data){
 		var json=JSON.parse(data);
 		callback(json);
-	}));
+	});
 }
 
 function populateStores(){
@@ -49,19 +49,19 @@ function populateStores(){
 
 function getStores(callback){
 	var url=window.location.href+"/find";
-	console.log(httpGetAsync(url,function(data){
+	httpGetAsync(url,function(data){
 		var json=JSON.parse(data);
 		callback(json);
-	}));
+	});
 }
 
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
+    xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
     xmlHttp.send(null);
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../bootstrap.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pizza Order Form</title>
@@ -12,21 +12,21 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 	</head>
-	<div class="container" style="background:url(../images/Logo.png) no-repeat center center">
-	<form action="./billing" method="POST"> <!--Put in whatever the form handler is-->
-		<fieldset>
-			<legend>Billing Information: </legend>
-			Credit Card Number:<br>
-			<input type="text" name="cardNum" value=""><br>
-			Card Expiration Date (Use only numbers. Ex: 08/18 = 0818):<br>
-			<input type="text" name="cardExp" value=""><br>
-			Card Security Code:<br>
-			<input type="text" name="cardSec" value=""><br>
-			Card ZIP Code:<br>
-			<input type="text" name="cardPost" value=""><br>
-			<br>
-			<input type="submit" value="Submit" style="margin-left: 50%"><br>
-		</fieldset>
-	</form>
-    </div>
+	<div class="container">
+		<form action="./billing" method="POST"> <!--Put in whatever the form handler is-->
+			<fieldset>
+				<legend>Billing Information: </legend>
+				Credit Card Number:<br>
+				<input type="text" name="cardNum" value=""><br>
+				Card Expiration Date (Use only numbers. Ex: 08/18 = 0818):<br>
+				<input type="text" name="cardExp" value=""><br>
+				Card Security Code:<br>
+				<input type="text" name="cardSec" value=""><br>
+				Card ZIP Code:<br>
+				<input type="text" name="cardPost" value=""><br>
+				<br>
+				<input type="submit" value="Submit" style="margin-left: 50%"><br>
+			</fieldset>
+		</form>
+  </div>
 </html>

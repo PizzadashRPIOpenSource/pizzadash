@@ -5,6 +5,7 @@ var router = express.Router();
 var path = __dirname+ '/html/';
 var jsPath = __dirname+'/js';
 var cssPath = __dirname+'/css';
+var imgPath = __dirname+'/images';
 var session = {};
 
 router.use(function (req,res,next){
@@ -15,6 +16,9 @@ router.use(function (req,res,next){
 router.get("/",function(req,res){
 	res.sendFile(path+'index.html');
 });
+router.post("/index", function(req,res){
+	res.redirect("/customer");
+});
 
 router.get('*.js',function(req,res){
 	res.sendFile(jsPath+req.path);
@@ -23,22 +27,11 @@ router.get('*.js',function(req,res){
 router.get('*.css',function(req,res){
 	res.sendFile(cssPath+req.path);
 });
-
-router.get("/store",function(req,res){
-	res.sendFile(path+'storePicker.html');
+router.get('*.jpg',function(req,res){
+	res.sendFile(imgPath+req.path);
 });
-
-router.get("/store/find",function(req,res){
-	var zip = session.order.customer.address.PostalCode;
-	//zip='12180';
-	utils.getStores(zip,function(storeData){
-		res.json(storeData.result.Stores);
-	})
-});
-
-router.post("/store",function(req,res){
-	session.order.storeID=req.body.store;
-	res.redirect("/order");
+router.get('*.png',function(req,res){
+	res.sendFile(imgPath+req.path);
 });
 
 router.get("/customer",function(req,res){
@@ -69,9 +62,25 @@ router.post("/billing",function(req,res){
 	session.cardExp=req.body.cardExp;
 	session.cardSec=req.body.cardSec;
 	session.cardPost=req.body.cardPost;
-	console.log(session);
-	console.log(session.order.customer.address);
+	// console.log(session);
+	// console.log(session.order.customer.address);
 	res.redirect("/store");
+});
+
+router.get("/store",function(req,res){
+	res.sendFile(path+'storePicker.html');
+});
+
+router.get("/store/find",function(req,res){
+	var zip = session.order.customer.address.PostalCode;
+	utils.getStores(zip,function(storeData){
+		res.json(storeData.result.Stores);
+	})
+});
+
+router.post("/store",function(req,res){
+	session.order.storeID=req.body.store;
+	res.redirect("/order");
 });
 
 router.get('/order',function(req,res){
@@ -86,7 +95,7 @@ router.get('/order/categories',function(req,res){
 			var cats=utils.jsonCategories(storeData.rootCategories);
 			res.json(cats);
 		});
-	
+
 });
 
 router.get("*",function(req,res){
