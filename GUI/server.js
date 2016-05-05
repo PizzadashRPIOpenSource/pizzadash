@@ -127,6 +127,13 @@ router.get('/order/getCat',function(req,res){
 	var storeID = session.order.storeID;
 });
 
+router.post('/order',function(req,res){
+
+	session.items = req.body.items;
+	console.log(session);
+	console.log(session.items);
+});
+
 router.get("*",function(req,res){
   res.sendFile(path + "index.html");
 })
