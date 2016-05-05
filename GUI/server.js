@@ -101,14 +101,14 @@ router.get('/order/categories',function(req,res){
 			//console.log(storeData.rootCategories);
 			session.storeData=storeData;
 			var cats=utils.jsonCategories(storeData.rootCategories);
+			session.cats=cats;
 			res.json(cats);
 		});
 
 });
 
 router.get('/order/getCat',function(req,res){
-	console.log(req.query.rootCat);
-	console.log(req.query.subCat);
+	utils.getItemsInCategory(req.query.rootCat, req.query.subCat,session);
 });
 
 router.get("*",function(req,res){

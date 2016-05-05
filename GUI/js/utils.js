@@ -67,14 +67,6 @@ function parseCat(){
 	})
 }
 
-function getItemsInRootCategory(rootCat, callback){
-	callback()
-}
-
-function getItemsInCategory(rootCat, cat, callback){
-	callback()
-}
-
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();

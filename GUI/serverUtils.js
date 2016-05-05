@@ -42,3 +42,27 @@ module.exports.jsonCategories=function jsonCategories(rootCategories){
 	return out;
 }
 
+module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,session){
+	//var Items=new Set();
+	var Items=[];
+	if (rootCat==-1){
+		return;
+	}
+	if (subCat==undefined){
+		return getRootCatItems(rootCat,session,Items);
+	}
+	getSubCatItems(rootCat,subCat,session,Items);
+
+
+}
+
+function getRootCatItems(rootCat,session,Items){
+	for (var i=0; i<session.cats[rootCat].length; i++){
+		getSubCatItems(rootCat,session.cats[rootCat][i],session,Items);
+	}
+}
+
+function getSubCatItems(rootCat,subCat,session,Items){
+	console.log(rootCat+":"+subCat);
+}
+
