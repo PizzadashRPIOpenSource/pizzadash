@@ -1,11 +1,12 @@
 var pizzapi = require('dominos');
 var prompt = require('prompt');
+var Set = require('collections/set');
 
 var mystores;
 
 module.exports.getStores=function getStores(zip, callback){
 	pizzapi.Util.findNearbyStores(
-		zip, 
+		zip,
 		'Delivery',
 		function(storeData) {
 			console.log(storeData.result.Stores);
@@ -42,3 +43,60 @@ module.exports.jsonCategories=function jsonCategories(rootCategories){
 	return out;
 }
 
+module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,session){
+	//var Items=new Set();
+	if (rootCat==-1){
+		return;
+	}
+	var Items=new Set();
+	var all=0;
+	console.log(session.storeData.menuByCode.F_SCBRD);
+	if (subCat==undefined){
+		var all=1;
+	}
+	var subCategories=session.storeData.rootCategories[rootCat].menuData.Categories;
+	for (var i=0; i<subCategories.length; i++){
+		if (!all && subCategories[i].Name!=subCat){
+			continue;
+		}
+		var products=subCategories[i].Products;
+		//console.log(products);
+	}
+}
+
+module.exports.getMenuInfo=function getInfoByCode(session, callback){
+	if(defined(session, 'storeData', 'menuByCode')){
+		var toReturn = [];
+		for(item in session.storeData.menuByCode){
+			getInfoByCode(session, item, function(ret){
+				toReturn.push(ret);
+			});
+		}
+		callback(toReturn);
+	}
+}
+
+module.exports.getInfoByCode=function getInfoByCode(session, code, callback){
+	if(defined(session, 'storeData', 'menuByCode', code)){
+		var item = session.storeData.menuByCode[code];
+		var ret = {
+			"name":item.menuData.Name,
+			"code":item.menuData.Code,
+			"description":item.menuData.Description,
+			"availableToppings":item.menuByCode.AvailableToppings
+		}
+		callback(ret);
+	}
+}
+
+module.exports.defined=function defined(obj) {
+	var args = Array.prototype.slice.call(arguments, 1);
+
+	  for (var i = 0; i < args.length; i++) {
+	    if (!obj || !obj.hasOwnProperty(args[i])) {
+	      return false;
+	    }
+	    obj = obj[args[i]];
+	  }
+	  return true;
+}

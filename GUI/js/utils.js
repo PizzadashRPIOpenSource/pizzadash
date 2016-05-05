@@ -63,16 +63,9 @@ function parseCat(){
 		url+="&subCat="+cat[1];
 	}
 	httpGetAsync(url,function(data){
+		console.log("Parsed: \n");
 		console.log(data);
 	})
-}
-
-function getItemsInRootCategory(rootCat, callback){
-	callback()
-}
-
-function getItemsInCategory(rootCat, cat, callback){
-	callback()
 }
 
 function httpGetAsync(theUrl, callback)
