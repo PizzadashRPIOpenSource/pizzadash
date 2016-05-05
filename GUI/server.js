@@ -102,16 +102,17 @@ router.post("/store",function(req,res){
 });
 
 router.get('/order',function(req,res){
-	if(!utils.defined(session, 'order','storeID')){
+	/*if(!utils.defined(session, 'order','storeID')){
 		console.log("Must enter a storeID first.");
 		res.redirect('/store');
-	}else{
+	}else{*/
 		res.sendFile(path+'order.html');
-	}
+	//}
 });
 
 router.get('/order/categories',function(req,res){
-	var storeID = session.order.storeID;
+	//var storeID = session.order.storeID;
+	storeID=3302;
 	utils.getMenu(storeID,function(storeData){
 			//console.log(storeData.rootCategories);
 			session.storeData=storeData;
@@ -119,12 +120,10 @@ router.get('/order/categories',function(req,res){
 			session.cats=cats;
 			res.json(cats);
 		});
-
 });
 
 router.get('/order/getCat',function(req,res){
 	utils.getItemsInCategory(req.query.rootCat, req.query.subCat,session);
-	var storeID = session.order.storeID;
 });
 
 router.post('/order',function(req,res){

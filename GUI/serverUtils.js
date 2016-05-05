@@ -1,6 +1,6 @@
 var pizzapi = require('dominos');
 var prompt = require('prompt');
-var collections = require('collections');
+var Set = require('collections/set');
 
 var mystores;
 
@@ -45,26 +45,23 @@ module.exports.jsonCategories=function jsonCategories(rootCategories){
 
 module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,session){
 	//var Items=new Set();
-	var Items=[];
 	if (rootCat==-1){
 		return;
 	}
+	var Items=new Set();
+	var all=0;
+	console.log(session.storeData)
 	if (subCat==undefined){
-		return getRootCatItems(rootCat,session,Items);
+		var all=1;
 	}
-	getSubCatItems(rootCat,subCat,session,Items);
-
-
-}
-
-function getRootCatItems(rootCat,session,Items){
-	for (var i=0; i<session.cats[rootCat].length; i++){
-		getSubCatItems(rootCat,session.cats[rootCat][i],session,Items);
+	var subCategories=session.storeData.rootCategories[rootCat].menuData.Categories;
+	for (var i=0; i<subCategories.length; i++){
+		if (!all && subCategories[i].Name!=subCat){
+			continue;
+		}
+		var products=subCategories[i].Products;
+		//console.log(products);
 	}
-}
-
-function getSubCatItems(rootCat,subCat,session,Items){
-	console.log(rootCat+":"+subCat);
 }
 
 module.exports.defined=function defined(obj) {
