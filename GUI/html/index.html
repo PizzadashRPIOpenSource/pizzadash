@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<link href="bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pizza Order Form</title>
@@ -11,8 +11,48 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+	<style>
+	div.relative{
+		position: relative;
+		top: 65px;
+		left: 300px;
+	}
+	div.absolute{
+		position: absolute;
+		top: 177px;
+		left: 366px;
+	}
+body:before{
+    content: "";
+    position: fixed;
+    background: #006491;
+
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+body:after {
+    content: "";
+    position: fixed;
+    background: #006491;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+body:before {
+    top: 0;
+}
+body:after {
+    bottom: 0;
+}
+	</style>
 	</head>
-    <div class="container">
-Hello World!
-</div>
+	<body>
+	<div class="relative">
+		<img src="../images/Logo.png" >
+		    <div class="absolute">
+    	<button onclick=window.location="./order.html" class="btn-circle"></button>
+		</div>
+	</div>
+</body>
 </html>

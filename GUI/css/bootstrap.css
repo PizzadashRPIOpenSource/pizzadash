@@ -3095,6 +3095,14 @@ fieldset[disabled] a.btn {
   background-color: #d4d4d4;
   border-color: #8c8c8c;
 }
+.btn-circle {
+  border-radius: 50%;
+  padding: 0.1em;
+  width:100px;
+  height:100px;
+  background-color: transparent;
+  border-color: transparent;
+}
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
