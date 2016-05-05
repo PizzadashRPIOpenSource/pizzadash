@@ -50,7 +50,7 @@ module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,se
 	}
 	var Items=new Set();
 	var all=0;
-	console.log(session.storeData)
+	console.log(session.storeData.menuByCode.F_SCBRD);
 	if (subCat==undefined){
 		var all=1;
 	}
@@ -61,6 +61,31 @@ module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,se
 		}
 		var products=subCategories[i].Products;
 		//console.log(products);
+	}
+}
+
+module.exports.getMenuInfo=function getInfoByCode(session, callback){
+	if(defined(session, 'storeData', 'menuByCode')){
+		var toReturn = [];
+		for(item in session.storeData.menuByCode){
+			getInfoByCode(session, item, function(ret){
+				toReturn.push(ret);
+			});
+		}
+		callback(toReturn);
+	}
+}
+
+module.exports.getInfoByCode=function getInfoByCode(session, code, callback){
+	if(defined(session, 'storeData', 'menuByCode', code)){
+		var item = session.storeData.menuByCode[code];
+		var ret = {
+			"name":item.menuData.Name,
+			"code":item.menuData.Code,
+			"description":item.menuData.Description,
+			"availableToppings":item.menuByCode.AvailableToppings
+		}
+		callback(ret);
 	}
 }
 
