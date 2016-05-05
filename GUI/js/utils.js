@@ -63,6 +63,7 @@ function parseCat(){
 		url+="&subCat="+cat[1];
 	}
 	httpGetAsync(url,function(data){
+		console.log("Parsed: \n");
 		console.log(data);
 	})
 }
