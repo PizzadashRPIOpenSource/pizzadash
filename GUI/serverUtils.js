@@ -1,5 +1,6 @@
 var pizzapi = require('dominos');
 var prompt = require('prompt');
+var collections = require('collections');
 
 var mystores;
 
@@ -42,7 +43,6 @@ module.exports.jsonCategories=function jsonCategories(rootCategories){
 	return out;
 }
 
-<<<<<<< HEAD
 module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,session){
 	//var Items=new Set();
 	var Items=[];
