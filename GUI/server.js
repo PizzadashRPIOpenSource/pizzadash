@@ -62,7 +62,12 @@ router.post("/customer",function(req,res){
 });
 
 router.get("/billing",function(req,res){
-	res.sendFile(path+'CreditCardInfo.html');
+	if(!utils.defined(session, 'order','customer','address','PostalCode')){
+		console.log("Must enter an address first");
+		res.redirect('/customer');
+	}else{
+		res.sendFile(path+'CreditCardInfo.html');
+	}
 });
 
 router.post("/billing",function(req,res){
@@ -76,14 +81,19 @@ router.post("/billing",function(req,res){
 });
 
 router.get("/store",function(req,res){
-	res.sendFile(path+'storePicker.html');
+	if(!utils.defined(session, 'order','customer','address','PostalCode')){
+		console.log("Must enter an address first");
+		res.redirect('/customer');
+	}else{
+		res.sendFile(path+'storePicker.html');
+	}
 });
 
 router.get("/store/find",function(req,res){
 	var zip = session.order.customer.address.PostalCode;
 	utils.getStores(zip,function(storeData){
 		res.json(storeData.result.Stores);
-	})
+	});
 });
 
 router.post("/store",function(req,res){
@@ -92,12 +102,17 @@ router.post("/store",function(req,res){
 });
 
 router.get('/order',function(req,res){
-	res.sendFile(path+'order.html');
+	if(!utils.defined(session, 'order','storeID')){
+		console.log("Must enter a storeID first.");
+		res.redirect('/store');
+	}else{
+		res.sendFile(path+'order.html');
+	}
 });
 
 router.get('/order/categories',function(req,res){
-	//utils.getMenu(session.order.storeID,
-	utils.getMenu(3302,function(storeData){
+	var storeID = session.order.storeID;
+	utils.getMenu(storeID,function(storeData){
 			//console.log(storeData.rootCategories);
 			session.storeData=storeData;
 			var cats=utils.jsonCategories(storeData.rootCategories);
@@ -107,8 +122,8 @@ router.get('/order/categories',function(req,res){
 });
 
 router.get('/order/getCat',function(req,res){
-	console.log(req.query.rootCat);
-	console.log(req.query.subCat);
+	var storeID = session.order.storeID;
+	// utils.getMenu(storeID)
 });
 
 router.get("*",function(req,res){

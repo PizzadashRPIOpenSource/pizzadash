@@ -5,7 +5,7 @@ var mystores;
 
 module.exports.getStores=function getStores(zip, callback){
 	pizzapi.Util.findNearbyStores(
-		zip, 
+		zip,
 		'Delivery',
 		function(storeData) {
 			console.log(storeData.result.Stores);
@@ -42,3 +42,14 @@ module.exports.jsonCategories=function jsonCategories(rootCategories){
 	return out;
 }
 
+module.exports.defined=function defined(obj) {
+	var args = Array.prototype.slice.call(arguments, 1);
+
+	  for (var i = 0; i < args.length; i++) {
+	    if (!obj || !obj.hasOwnProperty(args[i])) {
+	      return false;
+	    }
+	    obj = obj[args[i]];
+	  }
+	  return true;
+}
