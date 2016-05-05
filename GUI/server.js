@@ -1,10 +1,11 @@
 var express= require("express");
 var utils= require("./serverUtils.js");
+var pizzapi=require("dominos");
 var router = express.Router();
 var path = __dirname+ '/html/';
 var jsPath = __dirname+'/js';
 var cssPath = __dirname+'/css';
-var session = 'hello';
+var session = {};
 
 router.use(function (req,res,next){
 	console.log("/"+req.method);
@@ -36,7 +37,8 @@ router.get("/store/find",function(req,res){
 });
 
 router.post("/store",function(req,res){
-	res.sendFile(path+'storePicker.html');
+	session.order.storeID=req.body.store;
+	res.redirect("/order");
 });
 
 router.get("/customer",function(req,res){
@@ -44,7 +46,6 @@ router.get("/customer",function(req,res){
 });
 
 router.post("/customer",function(req,res){
-	session={};
 	session.order={};
 	session.order.customer={};
 	session.order.customer.firstName=req.body.firstname;
@@ -78,7 +79,14 @@ router.get('/order',function(req,res){
 });
 
 router.get('/order/categories',function(req,res){
-	res.json({categories:["1","2","3","4","5"]});
+	//utils.getMenu(session.order.storeID,
+	utils.getMenu(3302,function(storeData){
+			//console.log(storeData.rootCategories);
+			session.storeData=storeData;
+			var cats=utils.jsonCategories(storeData.rootCategories);
+			res.json(cats);
+		});
+	
 });
 
 router.get("*",function(req,res){

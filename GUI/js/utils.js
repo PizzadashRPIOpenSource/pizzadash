@@ -1,12 +1,15 @@
 function populateCategories(){
 	var select = document.getElementById("selectCategory"); 
-	getCategories(function(options){
-		for(var i = 0; i < options.length; i++) {
-		    var opt = options[i];
-		    var el = document.createElement("option");
-		    el.textContent = opt;
-		    el.value = opt;
-		    select.appendChild(el);
+	getCategories(function(rootCategories){
+		for (var rootCat in rootCategories){
+			console.log(rootCat);
+			/*for(var i = 0; i < subCats.length; i++) {
+			    var opt = subCats[i];
+			    var el = document.createElement("option");
+			    el.textContent = opt;
+			    el.value = "\t"+opt;
+			    select.appendChild(el);
+			}*/
 		}
 	}); 
 }
