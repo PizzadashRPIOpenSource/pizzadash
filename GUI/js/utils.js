@@ -1,15 +1,22 @@
 function populateCategories(){
 	var select = document.getElementById("selectCategory"); 
 	getCategories(function(rootCategories){
+		console.log(rootCategories);
 		for (var rootCat in rootCategories){
 			console.log(rootCat);
-			/*for(var i = 0; i < subCats.length; i++) {
+			var rootEl = document.createElement("option");
+			rootEl.textContent=rootCat;
+			rootEl.value = rootCat;
+			select.appendChild(rootEl);
+			var subCats=rootCategories[rootCat];
+			for(var i = 0; i < subCats.length; i++) {
+				console.log(subCats[i]);
 			    var opt = subCats[i];
 			    var el = document.createElement("option");
-			    el.textContent = opt;
-			    el.value = "\t"+opt;
+			    el.textContent = "-----"+opt;
+			    el.value = rootCat+":"+opt;
 			    select.appendChild(el);
-			}*/
+			}
 		}
 	}); 
 }
@@ -18,7 +25,7 @@ function getCategories(callback){
 	var url=window.location.href+"/categories";
 	console.log(httpGetAsync(url,function(data){
 		var json=JSON.parse(data);
-		callback(json.categories);
+		callback(json);
 	}));
 }
 
