@@ -133,6 +133,16 @@ router.post('/order',function(req,res){
 	console.log(session.items);
 });
 
+router.get('/dash',function(req,res){
+	res.sendFile(path+'MAC.html');
+});
+
+router.post('/dash/',function(req,res){
+	session.dashMacAddress=req.body.macAddress;
+	res.redirect('/tracking');		// /tracking is a placeholder for now.
+});
+	
+
 router.get("*",function(req,res){
   res.sendFile(path + "index.html");
 })
