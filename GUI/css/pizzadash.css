@@ -2,7 +2,15 @@ div.container{
 	position: relative;
 	top: 70px;
 	left: 0px;
+	bottom: 70px;
 }
+
+form {
+	margin-bottom: 50px;
+	
+	z-index: -1;
+}
+
 body:before{
     content: "";
     position: fixed;
@@ -19,7 +27,9 @@ body:after {
     left: 0;
     right: 0;
     height: 50px;
+	
 }
+	
 body:before {
     top: 0;
 }
