@@ -13,41 +13,13 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 	</head>
-			<style>
-div.container{
-	position: relative;
-	top: 70px;
-	left: 0px;
-}
-body:before{
-    content: "";
-    position: fixed;
-    background: #006491;
-
-    left: 0;
-    right: 0;
-    height: 50px;
-}
-body:after {
-    content: "";
-    position: fixed;
-    background: #006491;
-    left: 0;
-    right: 0;
-    height: 50px;
-}
-body:before {
-    top: 0;
-}
-body:after {
-    bottom: 0;
-}
-	</style>
     <div class="container">
 	<body onload="populateStores()">
-		Please Select A Store:<br>
+
 		<form action="./store" method="POST" id="selectStore">
-				<p align="center"><input type="submit" class="btn btn-primary btn-lg" value="Submit"></p>
+			<legend>Store Select </legend>
+				<br><p align="left"><input type="submit" class="btn btn-primary btn-lg" value="Submit"></p>
+				<br>Please Select A Store:<br>
 		</form>
 	</body>
     </div>

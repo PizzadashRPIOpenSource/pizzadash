@@ -2,19 +2,20 @@ div.container{
 	position: relative;
 	top: 70px;
 	left: 0px;
-	bottom: 70px;
+	bottom: 80px;
+    z-index: 0;
 }
 
 form {
-	margin-bottom: 60px;
+	margin-bottom: 70px;
 	
-	z-index: -1;
 }
 
 body:before{
     content: "";
     position: fixed;
     background: #006491;
+    z-index:10;
 
     left: 0;
     right: 0;
@@ -27,6 +28,8 @@ body:after {
     left: 0;
     right: 0;
     height: 50px;
+    z-index:10;
+
 	
 }
 	
@@ -46,5 +49,10 @@ body:after {
         position: absolute;
         top: 177px;
         left: 366px;
+    }
+    div.button_position{
+        position: relative;
+        top: 80px;
+        left: 50%
     }
 
