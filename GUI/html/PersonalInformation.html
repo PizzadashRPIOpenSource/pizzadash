@@ -2,6 +2,7 @@
 <html>
 	<head>
 	<link href="../bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../pizzadash.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pizza Order Form</title>
@@ -12,48 +13,19 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 	</head>
-			<style>
-div.container{
-	position: relative;
-	top: 70px;
-	left: 0px;
-}
-body:before{
-    content: "";
-    position: fixed;
-    background: #006491;
-	left: 0;
-    right: 0;
-    height: 50px;
-}
-body:after {
-    content: "";
-    position: fixed;
-    background: #006491;
-    left: 0;
-    right: 0;
-    height: 50px;
-}
-body:before {
-    top: 0;
-}
-body:after {
-    bottom: 0;
-}
-	</style>
 	<body>
 	<div class="container">
 	<form action="./customer" method="POST"> <!--Put in whatever the form handler is-->
 		<fieldset>
 			<legend>Personal Information: </legend>
 			First Name:<br>
-		  <input type="text" name="firstname" value=""><br>
+		  <input type="text" name="firstname" value=""><br><br>
 			Last Name:<br>
-			<input type="text" name="lastname" value=""><br>
+			<input type="text" name="lastname" value=""><br><br>
 			Street Address:<br>
-			<input type="text" name="streetaddress" value=""><br>
+			<input type="text" name="streetaddress" value=""><br><br>
 			City:<br>
-			<input type="text" name="city" value=""><br>
+			<input type="text" name="city" value=""><br><br>
 			State:<br>
 			<select name="state">
 				<option value="AL">Alabama</option>
@@ -107,11 +79,11 @@ body:after {
 				<option value="WV">West Virginia</option>
 				<option value="WI">Wisconsin</option>
 				<option value="WY">Wyoming</option>
-			</select><br>
+			</select><br><br>
 			Zip Code:<br>
-			<input type="text" name="zip" value=""><br>
+			<input type="text" name="zip" value=""><br><br>
 			Email:<br>
-			<input type="text" name="email" value=""><br>
+			<input type="text" name="email" value=""><br><br>
 			Phone Number (only enter numbers, Ex: 1-555-555-5555 = 15555555555 ):<br>
 			<input type="text" name="phone" value=""><br><br>
 			<input type="submit" value="Submit" style=" margin-left: 50%">
