@@ -49,18 +49,32 @@ module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,se
 		return;
 	}
 	var Items=new Set();
-	var all=0;
-	console.log(session.storeData)
+	var all=false;
 	if (subCat==undefined){
-		var all=1;
+		var all=true;
 	}
 	var subCategories=session.storeData.rootCategories[rootCat].menuData.Categories;
 	for (var i=0; i<subCategories.length; i++){
 		if (!all && subCategories[i].Name!=subCat){
 			continue;
 		}
-		var products=subCategories[i].Products;
-		//console.log(products);
+		//recursiveProductSearch(subCategories,Items);
+	}
+	return Items;
+}
+
+function recursiveProductSearch(subList,itemSet){
+	for (var i=0; i<subList.length; i++){
+		console.log(subList);
+
+		var products=subList[i].Products;
+		if (subList[i].Categories.length!=0){
+			recursiveProductSearch(subList[i].Categories,itemSet);
+			return;
+		}
+		for (var j=0; j<products.length; j++){
+			//itemSet.add(products[i]);
+		}
 	}
 }
 
