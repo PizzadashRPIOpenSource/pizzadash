@@ -128,19 +128,24 @@ router.get('/order/getCat',function(req,res){
 });
 
 router.post('/order',function(req,res){
-	session.items = req.body.items;
-	console.log(session.items);
+	try{
+		session.items = JSON.parse(req.body.items);
+		console.log(session.items);
+		res.redirect('/dash');
+	}catch(e){
+		console.log("Bad order entry" + e);
+	}
 });
 
 router.get('/dash',function(req,res){
 	res.sendFile(path+'MAC.html');
 });
 
-router.post('/dash/',function(req,res){
-	session.dashMacAddress=req.body.macAddress;
-	res.redirect('/tracking');		// /tracking is a placeholder for now.
+router.post('/dash',function(req,res){
+	session.dashMacAddress = req.body.dashMacAddress;
+	res.redirect('/review');
 });
-	
+
 
 router.get("*",function(req,res){
   res.sendFile(path + "index.html");

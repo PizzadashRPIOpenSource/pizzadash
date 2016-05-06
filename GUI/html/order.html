@@ -32,10 +32,18 @@
 			<form action="./order" method="POST">
 				<fieldset>
 					<legend>Constuct Order (json): </legend>
-			<p align="center"><textarea rows="10" cols="150" name="items">[
-{'code':'P_14SCREEN','options':{},'quantity':1},
-{'code':'F_COKE','options':{},'quantity':1}
-]</textarea></p>
+			<p align="center"><textarea rows="10" cols="150" name="items">
+[{
+	"code":"P_14SCREEN",
+	"options":{},
+	"quantity":1
+},
+{
+	"code":"F_COKE",
+	"options":{},
+	"quantity":1
+}]
+</textarea></p>
 				</fieldset>
 				<p align="center"><input type="submit" class="btn btn-primary btn-lg" value="Submit Order"></p>
 			</form>
