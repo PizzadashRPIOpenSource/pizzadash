@@ -51,10 +51,22 @@ body:after {
 						<option value="-1">Select a Category</option>
 					</select>
 				</br>
-					<input type="submit" name="submitCategory" class="btn btn-primary btn-lg" />
+					<input type="submit" value="Display Category" name="submitCategory" class="btn btn-primary btn-lg" />
 				</div>
 			</form>
 	  </div>
+		<div class="container">
+			<form onsubmit="submitItems()">
+				<fieldset>
+					<legend>Add Item: </legend>
+					<div class="container-fluid">
+						Item Code (json format):<br>
+						<input type="text" name="code" value=""><br>
+						<input type="submit" value="Add Item" name="submitItem">
+					</div>
+				</fieldset>
+			</form>
+		</div>
 	</body>
 
 <script type="text/javascript" src="../js/utils.js"></script>
