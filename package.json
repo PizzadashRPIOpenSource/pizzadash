@@ -8,6 +8,7 @@
     "collections": "^3.0.0",
     "dominos": "^2.0.1",
     "express": "^4.13.4",
+    "fs": "0.0.2",
     "node-dash-button": "^0.4.0",
     "prompt": "^1.0.0"
   },

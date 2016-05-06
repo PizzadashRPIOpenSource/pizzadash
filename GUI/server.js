@@ -2,6 +2,7 @@ var express= require("express");
 var utils= require("./serverUtils.js");
 var pizzapi=require("dominos");
 var util = require('util');
+var fs = require('fs');
 var router = express.Router();
 var path = __dirname+ '/html/';
 var jsPath = __dirname+'/js/';
@@ -101,17 +102,16 @@ router.post("/store",function(req,res){
 });
 
 router.get('/order',function(req,res){
-	/*if(!utils.defined(session, 'order','storeID')){
+	if(!utils.defined(session, 'order','storeID')){
 		console.log("Must enter a storeID first.");
 		res.redirect('/store');
-	}else{*/
+	}else{
 		res.sendFile(path+'order.html');
-	//}
+	}
 });
 
 router.get('/order/categories',function(req,res){
-	//var storeID = session.order.storeID;
-	storeID=3302;
+	var storeID = session.order.storeID;
 	utils.getMenu(storeID,function(storeData){
 			session.storeData=storeData;
 			var cats=utils.jsonCategories(storeData);
@@ -144,6 +144,33 @@ router.get('/dash',function(req,res){
 router.post('/dash',function(req,res){
 	session.dashMacAddress = req.body.dashMacAddress;
 	res.redirect('/review');
+});
+
+router.get('/review',function(req,res){
+	res.sendFile(path+'review.html');
+});
+
+router.get('/review/build',function(req,res){
+	console.log("Finalizing Order...");
+	var body = {};
+    body.order=session.order;
+    body.items=session.items;
+    body.cardNum=Number(session.cardNum);
+    body.cardExp=session.cardExp;
+    body.cardSec=Number(session.cardSec);
+    body.cardPost=Number(session.cardPost);
+    body.dashMacAddress=session.dashMacAddress;
+    body.order.storeID=Number(body.order.storeID);
+    session.body=body;
+    res.json(body);
+});
+
+router.get('/finalize',function(req,res){
+    filePath = 'order.json';
+    fs.writeFile(filePath, JSON.stringify(session.body,undefined,2), function() {
+    	console.log("Saved order.json");
+    });
+    res.redirect('/');
 });
 
 

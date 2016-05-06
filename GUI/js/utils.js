@@ -82,6 +82,13 @@ function populateItems(data){
 	}
 }
 
+function populateReview(){
+	url=window.location.href+"/build";
+	httpGetAsync(url,function(data){
+		document.getElementById('orderReview').innerHTML=JSON.stringify(JSON.parse(data),undefined,2);
+	});
+}
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
