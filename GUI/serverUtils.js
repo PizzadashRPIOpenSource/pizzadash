@@ -56,7 +56,6 @@ module.exports.jsonCategories=function jsonCategories(storeData, callback){
 					"defaultSides":item.menuData.DefaultSides,
 					"availableSides":item.menuData.AvailableSides
 				}
-				console.log(util.inspect(ret,{depth: 2}));
 				if(!out.hasOwnProperty(item.menuData.ProductType)){
 					out[item.menuData.ProductType] = [];
 				}
@@ -68,22 +67,22 @@ module.exports.jsonCategories=function jsonCategories(storeData, callback){
 	return out;
 }
 
-module.exports.getItemsInCategory=function getItemsInCategory(rootCat, session, callback){
+module.exports.getItemsInCategory=function getItemsInCategory(rootCat, session,callback){
 	//var Items=new Set();
-	if (rootCat==-1){
-		return;
+	data={items:[]};
+	if (rootCat!=-1){
+		for(i in session.cats[rootCat]){
+			data.items.push(session.cats[rootCat][i]);
+		}
 	}
-	for(i in session.cats[rootCat]){
-		console.log(util.inspect( session.cats[rootCat][i]));
-	}
+	callback(data);
 }
 
-module.exports.getMenuInfo=function getInfoByCode(session, callback){
+module.exports.getMenuInfo=function getMenuInfo(session, callback){
 	if(module.exports.defined(session, 'storeData', 'menuByCode')){
 		var toReturn = [];
 		for(item in session.storeData.menuByCode){
 			getInfoByCode(session, item, function(ret){
-				console.log(require('util').inspect(ret, { depth: null }));
 				toReturn.push(ret);
 			});
 		}

@@ -44,16 +44,17 @@ body:after {
 	</style>
 	<body onload="populateCategories()">
 		<div class="container">
-			<form onsubmit="parseCat()">
+			<form>
 				<div class="cardReg col-xs-offset-1 col-xs-10">
 					<label for="Category">Category</label>
 					<select name="selectCategory" id="selectCategory" class="form-control">
 						<option value="-1">Select a Category</option>
 					</select>
 				</br>
-					<input type="submit" value="Display Category" name="submitCategory" class="btn btn-primary btn-lg" />
+				<a class="btn btn-primary btn-lg" onclick="parseCat()">Submit</a>
 				</div>
 			</form>
+			<div class="cardReg col-xs-offset-1 col-xs-10" id="productInfo"><br></div>
 	  </div>
 		<div class="container">
 			<form onsubmit="submitItems()">

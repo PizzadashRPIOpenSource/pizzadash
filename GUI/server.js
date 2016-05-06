@@ -115,14 +115,16 @@ router.get('/order/categories',function(req,res){
 	utils.getMenu(storeID,function(storeData){
 			session.storeData=storeData;
 			var cats=utils.jsonCategories(storeData);
-			console.log(util.inspect(cats,{depth: 2}));
 			session.cats=cats;
 			res.json(cats);
 		});
 });
 
 router.get('/order/getCat',function(req,res){
-	utils.getItemsInCategory(req.query.rootCat,session);
+	utils.getItemsInCategory(req.query.rootCat,session,function(){
+		console.log(data);
+		res.json(data);
+	});
 });
 
 router.post('/order',function(req,res){
@@ -130,6 +132,16 @@ router.post('/order',function(req,res){
 	console.log(session);
 	console.log(session.items);
 });
+
+router.get('/dash',function(req,res){
+	res.sendFile(path+'MAC.html');
+});
+
+router.post('/dash/',function(req,res){
+	session.dashMacAddress=req.body.macAddress;
+	res.redirect('/tracking');		// /tracking is a placeholder for now.
+});
+	
 
 router.get("*",function(req,res){
   res.sendFile(path + "index.html");
