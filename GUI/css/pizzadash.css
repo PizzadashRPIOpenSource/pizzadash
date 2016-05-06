@@ -6,7 +6,7 @@ div.container{
 }
 
 form {
-	margin-bottom: 50px;
+	margin-bottom: 60px;
 	
 	z-index: -1;
 }
@@ -47,3 +47,4 @@ body:after {
         top: 177px;
         left: 366px;
     }
+
