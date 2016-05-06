@@ -49,21 +49,20 @@ router.get("/customer",function(req,res){
 
 router.post("/customer",function(req,res){
 	session.order={};
-	session.order.customer={};
-	session.order.customer.firstName=req.body.firstname;
-	session.order.customer.lastName=req.body.lastname;
-	session.order.customer.address={};
-	session.order.customer.address.Street=req.body.streetaddress;
-	session.order.customer.address.City=req.body.city;
-	session.order.customer.address.Region=req.body.state;
-	session.order.customer.address.PostalCode=req.body.zip;
-	session.order.customer.email=req.body.email;
-	session.order.customer.phone=req.body.phone;
+	session.order.firstName=req.body.firstname;
+	session.order.lastName=req.body.lastname;
+	session.order.address={};
+	session.order.address.Street=req.body.streetaddress;
+	session.order.address.City=req.body.city;
+	session.order.address.Region=req.body.state;
+	session.order.address.PostalCode=req.body.zip;
+	session.order.email=req.body.email;
+	session.order.phone=req.body.phone;
 	res.redirect('/billing');
 });
 
 router.get("/billing",function(req,res){
-	if(!utils.defined(session, 'order','customer','address','PostalCode')){
+	if(!utils.defined(session, 'order','address','PostalCode')){
 		console.log("Must enter an address first");
 		res.redirect('/customer');
 	}else{
@@ -77,12 +76,11 @@ router.post("/billing",function(req,res){
 	session.cardSec=req.body.cardSec;
 	session.cardPost=req.body.cardPost;
 	// console.log(session);
-	// console.log(session.order.customer.address);
 	res.redirect("/store");
 });
 
 router.get("/store",function(req,res){
-	if(!utils.defined(session, 'order','customer','address','PostalCode')){
+	if(!utils.defined(session, 'order','address','PostalCode')){
 		console.log("Must enter an address first");
 		res.redirect('/customer');
 	}else{
@@ -91,7 +89,7 @@ router.get("/store",function(req,res){
 });
 
 router.get("/store/find",function(req,res){
-	var zip = session.order.customer.address.PostalCode;
+	var zip = session.order.address.PostalCode;
 	utils.getStores(zip,function(storeData){
 		res.json(storeData.result.Stores);
 	});

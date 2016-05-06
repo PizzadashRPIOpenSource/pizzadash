@@ -1,19 +1,21 @@
 {
   "order":{
-    "customer":{
-      "firstName":"John",
-      "lastName":"Smith",
-      "address":{
-        "Street": "JohnSmith Lane",
-        "City": "JohnSmithville",
-        "Region": "NY",
-        "PostalCode": "90210"
-      },
-      "email":"johnsmith@johnsmith.gov",
-      "phone":"15181231234"
-    },
     "storeID":3302,
-    "deliveryMethod":"Delivery"
+    "deliveryMethod":"Delivery",
+    "Market":"",
+    "Currency":"",
+    "OrderID":"",
+    "firstName":"John",
+    "lastName":"Smith",
+    "ID":"",
+    "address":{
+      "Street": "JohnSmith Lane",
+      "City": "JohnSmithville",
+      "Region": "NY",
+      "PostalCode": "90210"
+    },
+    "email":"johnsmith@johnsmith.gov",
+    "phone":"15181231234"
   },
   "items":[
     {
