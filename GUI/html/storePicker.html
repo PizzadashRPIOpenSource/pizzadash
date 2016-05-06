@@ -27,14 +27,14 @@ body:before{
     right: 0;
     height: 50px;
 }
-/*body:after {
+body:after {
     content: "";
     position: fixed;
     background: #006491;
     left: 0;
     right: 0;
     height: 50px;
-}*/
+}
 body:before {
     top: 0;
 }
@@ -42,13 +42,18 @@ body:after {
     bottom: 0;
 }
 	</style>
+    <div class="container">
 	<body onload="populateStores()">
-		<div class="container">
 		<form action="./store" method="POST" id="selectStore">
-
+			<fieldset>
+				Please Select A Store:<br>
+				<select name="state">
+					<option value="Hoosick">Hoosick St. and 16th</option>
+				</select><br><br>
+				<input type="submit" value="Submit" style=" margin-left: 50%" >
+			</fieldset>
 		</form>
-		<input type="submit" form="selectStore" value="Submit" style=" margin-left: 50%">
-	</div>
 	</body>
+    </div>
 <script type="text/javascript" src="utils.js"></script>
 </html>
