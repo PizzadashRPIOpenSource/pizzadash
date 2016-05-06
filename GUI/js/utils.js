@@ -8,15 +8,6 @@ function populateCategories(){
 			rootEl.textContent=rootCat;
 			rootEl.value = rootCat;
 			select.appendChild(rootEl);
-			var subCats=rootCategories[rootCat];
-			for(var i = 0; i < subCats.length; i++) {
-				// console.log(subCats[i]);
-			    var opt = subCats[i];
-			    var el = document.createElement("option");
-			    el.textContent = "-----"+opt;
-			    el.value = rootCat+":"+opt;
-			    select.appendChild(el);
-			}
 		}
 	});
 }
@@ -59,9 +50,6 @@ function parseCat(){
 	var select=document.getElementById('selectCategory');
 	var cat=select.value.split(":");
 	var url=window.location.href+"/getCat?rootCat="+cat[0];
-	if (cat[1]!=undefined) {
-		url+="&subCat="+cat[1];
-	}
 	httpGetAsync(url,function(data){
 		console.log("Parsed: \n");
 		console.log(data);

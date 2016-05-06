@@ -1,7 +1,7 @@
 var pizzapi = require('dominos');
 var prompt = require('prompt');
 var Set = require('collections/set');
-
+var util = require('util');
 var mystores;
 
 module.exports.getStores=function getStores(zip, callback){
@@ -28,67 +28,6 @@ module.exports.getMenu=function getMenu(storeID, callback){
 	);
 }
 
-module.exports.jsonCategories=function jsonCategories(rootCategories){
-	out={}
-	for (rootCat in rootCategories){
-		out[rootCat]=[];
-		var arr=rootCategories[rootCat].menuData.Categories;
-		for (i in arr){
-			subCat=arr[i];
-			if (subCat.Name.length>0){
-				out[rootCat].push(subCat.Name);
-			}
-		}
-	}
-	return out;
-}
-
-module.exports.getItemsInCategory=function getItemsInCategory(rootCat, subCat,session){
-	//var Items=new Set();
-	if (rootCat==-1){
-		return;
-	}
-	var Items=new Set();
-	var all=0;
-	console.log(session.storeData.menuByCode.F_SCBRD);
-	if (subCat==undefined){
-		var all=1;
-	}
-	var subCategories=session.storeData.rootCategories[rootCat].menuData.Categories;
-	for (var i=0; i<subCategories.length; i++){
-		if (!all && subCategories[i].Name!=subCat){
-			continue;
-		}
-		var products=subCategories[i].Products;
-		//console.log(products);
-	}
-}
-
-module.exports.getMenuInfo=function getInfoByCode(session, callback){
-	if(defined(session, 'storeData', 'menuByCode')){
-		var toReturn = [];
-		for(item in session.storeData.menuByCode){
-			getInfoByCode(session, item, function(ret){
-				toReturn.push(ret);
-			});
-		}
-		callback(toReturn);
-	}
-}
-
-module.exports.getInfoByCode=function getInfoByCode(session, code, callback){
-	if(defined(session, 'storeData', 'menuByCode', code)){
-		var item = session.storeData.menuByCode[code];
-		var ret = {
-			"name":item.menuData.Name,
-			"code":item.menuData.Code,
-			"description":item.menuData.Description,
-			"availableToppings":item.menuByCode.AvailableToppings
-		}
-		callback(ret);
-	}
-}
-
 module.exports.defined=function defined(obj) {
 	var args = Array.prototype.slice.call(arguments, 1);
 
@@ -99,4 +38,68 @@ module.exports.defined=function defined(obj) {
 	    obj = obj[args[i]];
 	  }
 	  return true;
+}
+
+module.exports.jsonCategories=function jsonCategories(storeData, callback){
+	var out={};
+	if(module.exports.defined(storeData,'menuByCode')){
+		for (i in storeData.menuByCode){
+			var item = storeData.menuByCode[i];
+			// console.log(util.inspect(item,{depth: 2}));
+			if(item.menuData.hasOwnProperty('ProductType')){
+				var ret = {
+					"name":item.menuData.Name,
+					"code":item.menuData.Code,
+					"description":item.menuData.Description,
+					"defaultToppings":item.menuData.DefaultToppings,
+					"availableToppings":item.menuData.AvailableToppings,
+					"defaultSides":item.menuData.DefaultSides,
+					"availableSides":item.menuData.AvailableSides
+				}
+				console.log(util.inspect(ret,{depth: 2}));
+				if(!out.hasOwnProperty(item.menuData.ProductType)){
+					out[item.menuData.ProductType] = [];
+				}
+				out[item.menuData.ProductType].push(ret);
+			}
+		}
+
+	}
+	return out;
+}
+
+module.exports.getItemsInCategory=function getItemsInCategory(rootCat, session, callback){
+	//var Items=new Set();
+	if (rootCat==-1){
+		return;
+	}
+	for(i in session.cats[rootCat]){
+		console.log(util.inspect( session.cats[rootCat][i]));
+	}
+}
+
+module.exports.getMenuInfo=function getInfoByCode(session, callback){
+	if(module.exports.defined(session, 'storeData', 'menuByCode')){
+		var toReturn = [];
+		for(item in session.storeData.menuByCode){
+			getInfoByCode(session, item, function(ret){
+				console.log(require('util').inspect(ret, { depth: null }));
+				toReturn.push(ret);
+			});
+		}
+		callback(toReturn);
+	}
+}
+
+module.exports.getInfoByCode=function getInfoByCode(session, code, callback){
+	if(module.exports.defined(session, 'storeData', 'menuByCode', code)){
+		var item = session.storeData.menuByCode[code];
+		var ret = {
+			"name":item.menuData.Name,
+			"code":item.menuData.Code,
+			"description":item.menuData.Description,
+			"availableToppings":item.menuByCode.AvailableToppings
+		}
+		callback(ret);
+	}
 }

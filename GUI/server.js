@@ -1,6 +1,7 @@
 var express= require("express");
 var utils= require("./serverUtils.js");
 var pizzapi=require("dominos");
+var util = require('util');
 var router = express.Router();
 var path = __dirname+ '/html/';
 var jsPath = __dirname+'/js/';
@@ -114,16 +115,16 @@ router.get('/order/categories',function(req,res){
 	//var storeID = session.order.storeID;
 	storeID=3302;
 	utils.getMenu(storeID,function(storeData){
-			//console.log(storeData.rootCategories);
 			session.storeData=storeData;
-			var cats=utils.jsonCategories(storeData.rootCategories);
+			var cats=utils.jsonCategories(storeData);
+			console.log(util.inspect(cats,{depth: 2}));
 			session.cats=cats;
 			res.json(cats);
 		});
 });
 
 router.get('/order/getCat',function(req,res){
-	utils.getItemsInCategory(req.query.rootCat, req.query.subCat,session);
+	utils.getItemsInCategory(req.query.rootCat,session);
 });
 
 router.post('/order',function(req,res){
