@@ -1,0 +1,39 @@
+div.container{
+	position: relative;
+	top: 70px;
+	left: 0px;
+}
+body:before{
+    content: "";
+    position: fixed;
+    background: #006491;
+
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+body:after {
+    content: "";
+    position: fixed;
+    background: #006491;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+body:before {
+    top: 0;
+}
+body:after {
+    bottom: 0;
+}
+
+    div.relative{
+        position: relative;
+        top: 65px;
+        left: 300px;
+    }
+    div.absolute{
+        position: absolute;
+        top: 177px;
+        left: 366px;
+    }

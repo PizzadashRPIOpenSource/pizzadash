@@ -2,6 +2,7 @@
 <html>
 	<head>
 	<link href="../bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../pizzadash.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pizza Order Form</title>
@@ -12,36 +13,6 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 	</head>
-	<style>
-div.container{
-	position: relative;
-	top: 70px;
-	left: 0px;
-}
-body:before{
-    content: "";
-    position: fixed;
-    background: #006491;
-
-    left: 0;
-    right: 0;
-    height: 50px;
-}
-body:after {
-    content: "";
-    position: fixed;
-    background: #006491;
-    left: 0;
-    right: 0;
-    height: 50px;
-}
-body:before {
-    top: 0;
-}
-body:after {
-    bottom: 0;
-}
-	</style>
 	<body onload="populateCategories()">
 		<div class="container">
 			<form>
@@ -55,12 +26,21 @@ body:after {
 				</div>
 			</form>
 			<div class="cardReg col-xs-offset-1 col-xs-10" id="productInfo"><br></div>
+
+	  </div>
+		<div class="container">
+			<form action="./order" method="POST">
+				<fieldset>
+					<legend>Constuct Order (json): </legend>
 			<p align="center"><textarea rows="10" cols="150">[
 {'code':'P_14SCREEN','options':{},'quantity':1},
 {'code':'F_COKE','options':{},'quantity':1}
-]
-			</textarea></p>
-	  	</div>
+]</textarea></p>
+				</fieldset>
+				<p align="center"><input type="submit" class="btn btn-primary btn-lg" value="Submit Order"></p>
+			</form>
+		</div>
+
 	</body>
 
 <script type="text/javascript" src="../js/utils.js"></script>
