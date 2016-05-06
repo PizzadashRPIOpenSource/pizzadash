@@ -129,7 +129,6 @@ router.get('/order/getCat',function(req,res){
 
 router.post('/order',function(req,res){
 	session.items = req.body.items;
-	console.log(session);
 	console.log(session.items);
 });
 
