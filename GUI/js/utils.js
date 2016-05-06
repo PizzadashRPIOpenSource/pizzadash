@@ -48,18 +48,27 @@ function getStores(callback){
 
 function parseCat(){
 	var select=document.getElementById('selectCategory');
-	var cat=select.value.split(":");
-	var url=window.location.href+"/getCat?rootCat="+cat[0];
+	var url=window.location.href+"/getCat?rootCat="+select.value;
 	httpGetAsync(url,function(data){
 		console.log("Parsed: \n");
 		console.log(data);
+		populateItems(JSON.parse(data));
 	})
+}
+
+function populateItems(data){
+	var items=data['items'];
+	for (i in items){
+		var item=items[i];
+		console.log(item.name);
+		$('#productInfo').append('<p style="color:#006491">'+item.name+': </p><p> '+item.code+'</p>');
+	}
 }
 
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
+    xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
