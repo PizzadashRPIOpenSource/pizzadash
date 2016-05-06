@@ -57,6 +57,7 @@ function parseCat(){
 }
 
 function populateItems(data){
+	$("#productInfo").html("<br>");
 	var items=data['items'];
 	for (i in items){
 		var item=items[i];
